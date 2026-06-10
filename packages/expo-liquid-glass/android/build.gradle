@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+group = 'expo.modules.liquidglass'
+version = '1.0.0'
+
+def safeExtGet(prop, fallback) {
+  rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+android {
+  namespace 'expo.modules.liquidglass'
+  compileSdkVersion safeExtGet('compileSdkVersion', 35)
+
+  defaultConfig {
+    minSdkVersion safeExtGet('minSdkVersion', 24)
+    targetSdkVersion safeExtGet('targetSdkVersion', 35)
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = '17'
+  }
+
+  lintOptions {
+    abortOnError false
+  }
+}
+
+repositories {
+  mavenCentral()
+  google()
+  // Until liquidglass-view ships on Maven Central, publish it locally first:
+  //   ./gradlew publishToMavenLocal   (from the LiquidGlass repo root)
+  mavenLocal()
+}
+
+dependencies {
+  implementation project(':expo-modules-core')
+  implementation 'io.github.abdullajon1881:liquidglass-view:1.0.0'
+  implementation 'io.github.abdullajon1881:liquidglass-core:1.0.0'
+}

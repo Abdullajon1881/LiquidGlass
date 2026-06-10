@@ -1,0 +1,12 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["ExpoLiquidGlassModule", "ExpoLiquidGlassProviderModule"]
+  },
+  "android": {
+    "modules": [
+      "expo.modules.liquidglass.ExpoLiquidGlassModule",
+      "expo.modules.liquidglass.ExpoLiquidGlassProviderModule"
+    ]
+  }
+}
