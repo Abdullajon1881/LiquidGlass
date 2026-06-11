@@ -129,12 +129,12 @@ private fun BoxScope.FabCluster(glassState: LiquidGlassProviderState) {
         modifier = Modifier
             .align(Alignment.BottomEnd)
             .navigationBarsPadding()
-            .padding(end = 20.dp, bottom = 112.dp),
-        spacing = 40.dp,
+            .padding(end = 28.dp, bottom = 112.dp),
+        spacing = 44.dp,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             if (expanded) {
                 ClusterAction(container, Icons.Filled.Edit, "Edit", "edit")
@@ -172,7 +172,7 @@ private fun ClusterAction(
 ) {
     Box(
         modifier = Modifier
-            .size(52.dp)
+            .size(56.dp)
             .glassEffect(container, id = id, shape = GlassShape.Circle, interactive = true)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },

@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.dp
  */
 @Immutable
 public class GlassRefraction(
-    public val height: Dp = 10.dp,
-    public val amount: Dp = 12.dp,
+    public val height: Dp = 12.dp,
+    public val amount: Dp = 16.dp,
 ) {
     init {
         require(height >= 0.dp) { "refraction height must be >= 0, got $height" }
@@ -29,7 +29,7 @@ public class GlassRefraction(
     override fun toString(): String = "GlassRefraction(height=$height, amount=$amount)"
 
     public companion object {
-        /** The standard lens: a 10dp band bending up to 12dp. */
+        /** The standard lens: a 12dp band bending up to 16dp. */
         public val Default: GlassRefraction = GlassRefraction()
 
         /** No refraction at all — flat frosted glass. */
@@ -47,8 +47,8 @@ public class GlassRefraction(
  */
 @Immutable
 public class GlassHighlight(
-    public val width: Dp = 2.dp,
-    public val alpha: Float = 0.45f,
+    public val width: Dp = 2.5.dp,
+    public val alpha: Float = 0.55f,
     public val lightAngleDegrees: Float = 245f,
 ) {
     init {
@@ -209,7 +209,7 @@ public class GlassStyle(
          */
         public fun prominent(tint: Color): GlassStyle = Regular.copy(
             tint = tint,
-            highlight = GlassHighlight(width = 2.dp, alpha = 0.6f),
+            highlight = GlassHighlight(width = 2.5.dp, alpha = 0.7f),
         )
     }
 }
