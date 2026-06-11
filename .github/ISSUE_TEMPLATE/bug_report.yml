@@ -1,0 +1,59 @@
+name: 🐞 Bug report
+description: Something renders wrong, crashes, or behaves unexpectedly
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. The rendering tier depends on the Android API
+        level, so device details are essential — please don't skip them.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you see, and what did you expect instead?
+      placeholder: The glass renders fully opaque instead of refracting the backdrop…
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - liquidglass-compose
+        - liquidglass-view
+        - liquidglass-core
+        - expo-liquid-glass (React Native / Expo)
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: LiquidGlass version
+      placeholder: 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device & Android version
+      description: Model and OS version — the render tier (SHADER/BLUR/SCRIM) depends on it.
+      placeholder: Pixel 8, Android 14 (API 34)
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: Steps, or ideally a small code snippet / repo link.
+      render: kotlin
+    validations:
+      required: true
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshot or recording
+      description: For visual bugs this is the single most useful thing. Drag images here.
+    validations:
+      required: false

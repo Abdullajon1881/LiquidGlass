@@ -1,8 +1,31 @@
-# LiquidGlass
+<div align="center">
 
-**Apple's Liquid Glass design language, engineered for Android — Jetpack Compose, classic Views, and React Native/Expo.**
+# ✦ LiquidGlass
 
-Liquid Glass is the dynamic material Apple introduced across its platforms in June 2025: glass that blurs and refracts the content behind it, reflects light along its rim, reacts to touch like gel, and **melts into neighboring glass** as elements approach each other. This project is a ground-up implementation of that material for the Android ecosystem, built on real optics (signed-distance-field lensing in AGSL) rather than a static blur.
+### Apple's Liquid Glass, engineered for Android — Jetpack Compose · Classic Views · React Native / Expo
+
+<br/>
+
+[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20React%20Native-3DDC84?logo=android&logoColor=white)](#)
+[![Min API](https://img.shields.io/badge/min%20SDK-21-blue)](#rendering-tiers)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-7F52FF?logo=kotlin&logoColor=white)](#)
+[![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-2024.12-4285F4?logo=jetpackcompose&logoColor=white)](#jetpack-compose)
+[![AGSL](https://img.shields.io/badge/AGSL-RuntimeShader-FF6F00)](#how-it-works)
+[![License](https://img.shields.io/badge/license-Apache%202.0-success)](LICENSE)
+[![CI](https://github.com/Abdullajon1881/LiquidGlass/actions/workflows/ci.yml/badge.svg)](https://github.com/Abdullajon1881/LiquidGlass/actions/workflows/ci.yml)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
+
+<br/>
+
+<img src="docs/media/hero.png" alt="LiquidGlass running on Android 16 — glass title pill, bottom bar, FAB and a draggable refraction lens over a vivid animated backdrop" width="100%"/>
+
+<sub>Live on a Xiaomi tablet (Android 16, API 36) — full AGSL refraction tier.</sub>
+
+</div>
+
+---
+
+Liquid Glass is the dynamic material Apple introduced across its platforms in June 2025: glass that blurs and refracts the content behind it, reflects light along its rim, reacts to touch like gel, and **melts into neighboring glass** as elements approach each other. This is a ground-up implementation of that material for the Android ecosystem, built on **real optics** — signed-distance-field lensing in an AGSL runtime shader — not a static blur.
 
 ```
 liquidglass-core      Pure Kotlin: SDF lens math, AGSL shader, uniform packing, tier logic
@@ -10,6 +33,13 @@ liquidglass-core      Pure Kotlin: SDF lens math, AGSL shader, uniform packing, 
 ├── liquidglass-view      Classic View system renderer
 └── expo-liquid-glass     React Native / Expo module (real UIGlassEffect on iOS 26+)
 ```
+
+<table>
+<tr>
+<td width="50%"><img src="docs/media/refraction.png" alt="A draggable glass lens visibly bending the text and concentric rings of the backdrop beneath it"/><br/><sub><b>Edge refraction</b> — the lens bends the world like a convex slab of glass.</sub></td>
+<td width="50%"><img src="docs/media/merge.png" alt="A floating action button cluster whose buttons melt into one connected liquid glass column"/><br/><sub><b>Liquid merging</b> — cluster actions melt out of one another (iOS <code>GlassEffectContainer</code>).</sub></td>
+</tr>
+</table>
 
 ## Why this one
 
@@ -36,6 +66,12 @@ liquidglass-core      Pure Kotlin: SDF lens math, AGSL shader, uniform packing, 
 Every formula in the shader has a line-for-line Kotlin mirror (`GlassMath`) covered by JVM unit tests — the optics are proven, not eyeballed.
 
 ## Jetpack Compose
+
+> [!NOTE]
+> **Distribution status.** Maven Central publishing is configured but not yet
+> released. Until the first push to Central, consume the artifacts locally:
+> clone this repo and run `./gradlew publishToMavenLocal`, then add
+> `mavenLocal()` to your repositories. The coordinates below are final.
 
 ```kotlin
 dependencies {
