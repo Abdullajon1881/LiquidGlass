@@ -1,17 +1,20 @@
 # liquid-glass-kit
 
-Apple's **Liquid Glass** for React Native and Expo — **one self-contained
-package, both platforms, zero native setup.**
+**Liquid Glass** for Android, React Native and Expo — **inspired by Apple's
+material, built natively for Kotlin/Android and RN/Expo.** One self-contained
+package, zero native setup.
 
-- **iOS 26+** — renders Apple's real `UIGlassEffect`: the genuine system
-  material, not an imitation. Older iOS falls back to an ultra-thin material
-  blur.
 - **Android 13+** — the full AGSL refraction pipeline: SDF edge lensing,
   chromatic dispersion, specular rim, gel press. Android 12 gets frosted blur;
   Android 10–11 a clipped backdrop with scrim; older versions a plain scrim.
   The entire Android engine is **vendored inside this package** — there is no
   external Maven dependency to install.
-- One typed JS API for both platforms.
+- **Cross-platform safe** — on iOS and web the components fall back to a
+  transparent passthrough `View`: children render normally, nothing crashes.
+  The glass is Android-only; the package is still safe to ship in any
+  cross-platform app. Use the exported `isLiquidGlassSupported` boolean to
+  branch your UI when you want a different treatment off Android.
+- One typed JS API.
 
 ## Install
 
@@ -67,28 +70,33 @@ const styles = StyleSheet.create({
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `providerId` | `string` | `"default"` | Links glass views to this backdrop (Android; iOS samples natively) |
+| `providerId` | `string` | `"default"` | Links glass views to this backdrop |
 
 `LiquidGlassView`
 
-| Prop | Type | Default | Platform |
-|---|---|---|---|
-| `providerId` | `string` | `"default"` | Android |
-| `cornerRadius` | `number` (dp) | capsule | both |
-| `tint` | `ColorValue` | — | both |
-| `interactive` | `boolean` | `false` | both |
-| `blurRadius` | `number` (dp) | `20` | Android |
-| `refractionHeight` | `number` (dp) | `10` | Android |
-| `refractionAmount` | `number` (dp) | `12` | Android |
-| `saturation` | `number` | `1.5` | Android |
-| `chromaticAberration` | `number` 0..1 | `0` | Android |
-| `noiseAlpha` | `number` 0..1 | `0.015` | Android |
-| `highlightAlpha` | `number` 0..1 | `0.45` | Android |
-| `highlightWidth` | `number` (dp) | `2` | Android |
-| `lightAngle` | `number` (deg) | `245` | Android |
+| Prop | Type | Default |
+|---|---|---|
+| `providerId` | `string` | `"default"` |
+| `cornerRadius` | `number` (dp) | capsule |
+| `tint` | `ColorValue` | — |
+| `interactive` | `boolean` | `false` |
+| `blurRadius` | `number` (dp) | `20` |
+| `refractionHeight` | `number` (dp) | `12` |
+| `refractionAmount` | `number` (dp) | `16` |
+| `saturation` | `number` | `1.5` |
+| `chromaticAberration` | `number` 0..1 | `0` |
+| `noiseAlpha` | `number` 0..1 | `0.015` |
+| `highlightAlpha` | `number` 0..1 | `0.55` |
+| `highlightWidth` | `number` (dp) | `2.5` |
+| `lightAngle` | `number` (deg) | `245` |
 
-On iOS 26+ the system glass manages its own optics, so the Android-only props
-are accepted and ignored — shared component code just works.
+These props drive the Android rendering. On iOS and web the view is a plain
+passthrough, so they're accepted and ignored — shared component code just works.
+
+```ts
+import { isLiquidGlassSupported } from 'liquid-glass-kit';
+// true on Android, false elsewhere
+```
 
 ## Rules
 

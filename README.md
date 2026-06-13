@@ -2,7 +2,9 @@
 
 # ✦ LiquidGlass
 
-### Apple's Liquid Glass, engineered for Android — Jetpack Compose · Classic Views · React Native / Expo
+### Inspired by Apple's Liquid Glass — built for Kotlin/Android & React Native/Expo
+
+Jetpack Compose · Classic Views · React Native / Expo
 
 <br/>
 
@@ -25,13 +27,13 @@
 
 ---
 
-Liquid Glass is the dynamic material Apple introduced across its platforms in June 2025: glass that blurs and refracts the content behind it, reflects light along its rim, reacts to touch like gel, and **melts into neighboring glass** as elements approach each other. This is a ground-up implementation of that material for the Android ecosystem, built on **real optics** — signed-distance-field lensing in an AGSL runtime shader — not a static blur.
+Liquid Glass is the dynamic material Apple introduced across its platforms in June 2025: glass that blurs and refracts the content behind it, reflects light along its rim, reacts to touch like gel, and **melts into neighboring glass** as elements approach each other. **LiquidGlass is an independent, ground-up reimagining of that material for the Android ecosystem** — Kotlin/Android (Compose + Views) and React Native/Expo — built on **real optics** (signed-distance-field lensing in an AGSL runtime shader), not a static blur. It is not affiliated with or derived from Apple's implementation; it simply chases the same feel.
 
 ```
 liquidglass-core      Pure Kotlin: SDF lens math, AGSL shader, uniform packing, tier logic
 ├── liquidglass-compose   Jetpack Compose renderer (the flagship)
 ├── liquidglass-view      Classic View system renderer
-└── liquid-glass-kit      React Native / Expo module (real UIGlassEffect on iOS 26+)
+└── liquid-glass-kit      React Native / Expo module (Android-native glass, on npm)
 ```
 
 <table>
@@ -45,14 +47,14 @@ liquidglass-core      Pure Kotlin: SDF lens math, AGSL shader, uniform packing, 
 
 | | **LiquidGlass** | liquid-glass-react | Kyant0 / backdrop | Haze |
 |---|---|---|---|---|
-| Platform | Android (Compose + Views) + RN/Expo (Android & iOS) | Web React (Chrome only) | Compose Multiplatform | Compose Multiplatform |
+| Platform | Android (Compose + Views) + RN/Expo | Web React (Chrome only) | Compose Multiplatform | Compose Multiplatform |
 | Edge refraction (true lensing) | ✅ AGSL SDF lens | ✅ SVG displacement | ✅ | ❌ (blur only) |
 | **Liquid shape merging / morphing** | ✅ smooth-min SDF container, up to 8 shapes | ❌ | ❌ | ❌ |
 | Chromatic dispersion | ✅ | ✅ | ✅ | ❌ |
 | Gel press interaction | ✅ scale + local bulge + rim flare | hover/click states | ✅ | ❌ |
 | Graceful degradation | ✅ 3 tiers down to API 21 | ❌ breaks outside Chrome | API 33+ only | blur or scrim |
 | Classic View system | ✅ | — | ❌ | ❌ |
-| React Native / Expo | ✅ (+ native UIGlassEffect on iOS 26+) | ❌ | ❌ | ❌ |
+| React Native / Expo | ✅ self-contained npm package | ❌ | ❌ | ❌ |
 | Design-system coupling | none (foundation-only) | none | none | none |
 | Optics unit-tested | ✅ shader math mirrored in Kotlin, 80+ tests | ❌ | ❌ | ✅ |
 
@@ -197,9 +199,11 @@ import { LiquidGlassProvider, LiquidGlassView } from 'liquid-glass-kit';
 
 - **One self-contained package.** The entire Android engine is vendored inside
   it — `npm install` and rebuild is all it takes; no Maven dependency to add.
-- **iOS 26+**: renders Apple's real `UIGlassEffect` — the genuine article, not an imitation. Older iOS falls back to ultra-thin material blur.
 - **Android**: the full AGSL pipeline with the same tier degradation as the native artifact.
-- One JS API for both platforms; Android-only optical props are safely ignored on iOS.
+- **Cross-platform safe**: on iOS and web the components are a transparent
+  passthrough `View` — children render normally, nothing crashes — so the same
+  code is safe to ship in any React Native / Expo app. The glass itself is
+  Android-only. Check `isLiquidGlassSupported` if you want to branch your UI.
 
 See [packages/liquid-glass-kit](packages/liquid-glass-kit/README.md) for details.
 
@@ -236,7 +240,7 @@ liquidglass-compose/    Provider/glass modifier nodes, GlassPainter, container
 liquidglass-view/       BackdropRecorder, GlassViewController, LiquidGlassView,
                         LiquidGlassProviderLayout, Robolectric tests
 packages/
-  liquid-glass-kit/     Expo module (npm): TS API, vendored Android (Kotlin), iOS (Swift)
+  liquid-glass-kit/     Expo module (npm): TS API + vendored Android engine (Kotlin)
 sample/                 Demo app: draggable lens, morphing FAB cluster,
                         glass bottom bar over an animated backdrop
 ```

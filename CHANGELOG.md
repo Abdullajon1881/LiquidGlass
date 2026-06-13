@@ -35,9 +35,11 @@ Initial release.
 ### liquid-glass-kit (npm)
 - `<LiquidGlassProvider>` / `<LiquidGlassView>` React components with a fully
   typed prop surface.
+- Self-contained: the Android engine (`dev.liquidglass.core` + `view`) is
+  vendored into the package — no Maven dependency to install.
 - Android implementation on `GlassViewController` (Paper- and Fabric-safe).
-- iOS implementation on the real `UIGlassEffect` (iOS 26+) with ultra-thin
-  material fallback.
+- Safe passthrough on iOS and web (plain `View`), plus an
+  `isLiquidGlassSupported` flag, so it ships cleanly in cross-platform apps.
 
 ### sample
 - Demo app: draggable refraction lens, morphing FAB cluster, glass bottom

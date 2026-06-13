@@ -137,11 +137,13 @@ in sync from there.
 - **view** isolates the engine in `GlassViewController` so any host
   `ViewGroup` can embed glass with four forwarded calls. `LiquidGlassView` is
   the convenience host; the React Native view is another.
-- **liquid-glass-kit** maps JS props onto the controller on Android. On iOS
-  it hosts the real `UIGlassEffect` (26+) or an ultra-thin material blur —
-  UIKit samples the backdrop natively, so the provider is a passthrough there.
-  Glass draws in the RN view's own `onDraw`, leaving React Native (Paper and
-  Fabric) full ownership of child mounting indices.
+- **liquid-glass-kit** maps JS props onto the controller on Android. Glass
+  draws in the RN view's own `onDraw`, leaving React Native (Paper and Fabric)
+  full ownership of child mounting indices. The package is **Android-native
+  only**: on iOS and web the JS layer renders a plain passthrough `View`
+  (children still render, no glass), so the same component is safe in any
+  cross-platform app. The exported `isLiquidGlassSupported` flag lets callers
+  branch their UI.
 
 ## Design decisions worth recording
 
@@ -163,6 +165,6 @@ in sync from there.
 - Auto light/dark content adaptation (backdrop luminance sampling) is
   deliberately out of scope for v1 — pixel readback needs a throttled design
   to avoid GPU stalls. Tracked for v1.1.
-- iOS Swift sources and the Expo Android module compile inside an Expo app
-  build (they need `expo-modules-core` from npm); they are not part of this
+- The Expo Android module compiles inside an Expo app build (it needs
+  `expo-modules-core` from npm); it is not part of this
   repo's Gradle build.

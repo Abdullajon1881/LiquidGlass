@@ -1,7 +1,7 @@
 {
   "name": "liquid-glass-kit",
   "version": "1.0.0",
-  "description": "Apple Liquid Glass for React Native and Expo — real UIGlassEffect on iOS 26+, self-contained AGSL refraction shaders on Android 13+, graceful degradation everywhere else. One package, both platforms, zero native setup.",
+  "description": "Liquid Glass for Android, React Native & Expo — inspired by Apple's material, built natively with self-contained AGSL refraction shaders: edge lensing, chromatic dispersion, gel-press interaction, liquid shape merging. Native glass on Android; safe passthrough elsewhere. Zero native setup.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "sideEffects": false,
@@ -11,16 +11,16 @@
     "prepare": "tsc"
   },
   "keywords": [
+    "android",
     "react-native",
     "expo",
     "liquid-glass",
     "liquidglass",
     "glassmorphism",
     "blur",
-    "ios26",
-    "uiglasseffect",
     "agsl",
-    "android"
+    "runtime-shader",
+    "refraction"
   ],
   "license": "Apache-2.0",
   "homepage": "https://github.com/Abdullajon1881/LiquidGlass#readme",
@@ -49,7 +49,6 @@
   "files": [
     "build",
     "android",
-    "ios",
     "src",
     "expo-module.config.json",
     "README.md"
