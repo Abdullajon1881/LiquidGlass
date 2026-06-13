@@ -33,11 +33,11 @@ jobs:
           path: '**/build/reports/tests/'
 
   expo-typescript:
-    name: Typecheck (expo-liquid-glass)
+    name: Typecheck (liquid-glass-kit)
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: packages/expo-liquid-glass
+        working-directory: packages/liquid-glass-kit
     steps:
       - uses: actions/checkout@v4
 

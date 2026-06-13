@@ -119,8 +119,14 @@ glass surface for the union each frame.
 ```
 liquidglass-core      pure Kotlin/JVM — zero Android types
    ▲            ▲
-compose        view ◄────────── packages/expo-liquid-glass (Android side)
+compose        view ───vendored──► packages/liquid-glass-kit (Android side)
 ```
+
+The npm package vendors a copy of `core` + `view` under its own `android/`
+source tree, so `liquid-glass-kit` is self-contained on npm — an Expo app
+needs no Maven artifact to build it. The canonical sources live in the
+`liquidglass-core` / `liquidglass-view` modules; the vendored copies are kept
+in sync from there.
 
 - **core** holds everything that must never drift apart: shader source,
   uniform names, packing layout, tier policy, and the math mirror. Both
@@ -131,7 +137,7 @@ compose        view ◄────────── packages/expo-liquid-glass
 - **view** isolates the engine in `GlassViewController` so any host
   `ViewGroup` can embed glass with four forwarded calls. `LiquidGlassView` is
   the convenience host; the React Native view is another.
-- **expo-liquid-glass** maps JS props onto the controller on Android. On iOS
+- **liquid-glass-kit** maps JS props onto the controller on Android. On iOS
   it hosts the real `UIGlassEffect` (26+) or an ultra-thin material blur —
   UIKit samples the backdrop natively, so the provider is a passthrough there.
   Glass draws in the RN view's own `onDraw`, leaving React Native (Paper and

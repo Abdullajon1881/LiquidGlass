@@ -32,7 +32,7 @@ Initial release.
   (RenderNode, API 29+).
 - Embeddable `GlassViewController` engine for custom host views.
 
-### expo-liquid-glass
+### liquid-glass-kit (npm)
 - `<LiquidGlassProvider>` / `<LiquidGlassView>` React components with a fully
   typed prop surface.
 - Android implementation on `GlassViewController` (Paper- and Fabric-safe).

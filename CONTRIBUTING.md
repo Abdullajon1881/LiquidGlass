@@ -10,7 +10,7 @@ project is structured, how to build it, and the bar for changes.
 | `liquidglass-core` | Pure Kotlin (JVM) | AGSL shader source, SDF/lens math mirror, shape packing, render-tier policy. **Zero Android types.** |
 | `liquidglass-compose` | Kotlin + Compose | Provider/glass modifier nodes, painter, container merge/morph, components |
 | `liquidglass-view` | Kotlin + Android | `BackdropRecorder`, `GlassViewController`, `LiquidGlassView` |
-| `packages/expo-liquid-glass` | TS + Kotlin + Swift | React Native / Expo module |
+| `packages/liquid-glass-kit` | TS + Kotlin + Swift | React Native / Expo module (npm: `liquid-glass-kit`; Android engine vendored) |
 | `sample` | Kotlin + Compose | Demo app |
 
 `core` is the single source of truth that keeps the Compose and View renderers
@@ -29,7 +29,7 @@ they agree.
 For the Expo module's TypeScript:
 
 ```bash
-cd packages/expo-liquid-glass && npm install && npx tsc --noEmit
+cd packages/liquid-glass-kit && npm install && npx tsc --noEmit
 ```
 
 Toolchain: JDK 17+ (the Android Studio JBR is fine), Android SDK 35, Gradle

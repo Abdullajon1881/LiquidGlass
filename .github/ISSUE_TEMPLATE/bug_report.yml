@@ -23,7 +23,7 @@ body:
         - liquidglass-compose
         - liquidglass-view
         - liquidglass-core
-        - expo-liquid-glass (React Native / Expo)
+        - liquid-glass-kit (React Native / Expo)
         - Not sure
     validations:
       required: true

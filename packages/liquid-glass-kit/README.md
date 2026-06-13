@@ -1,32 +1,37 @@
-# expo-liquid-glass
+# liquid-glass-kit
 
-Apple's **Liquid Glass** for React Native and Expo.
+Apple's **Liquid Glass** for React Native and Expo — **one self-contained
+package, both platforms, zero native setup.**
 
 - **iOS 26+** — renders Apple's real `UIGlassEffect`: the genuine system
   material, not an imitation. Older iOS falls back to an ultra-thin material
   blur.
-- **Android 13+** — the full AGSL refraction pipeline from
-  [LiquidGlass](../../README.md): SDF edge lensing, chromatic dispersion,
-  specular rim, gel press. Android 12 gets frosted blur; Android 10–11 a
-  clipped backdrop with scrim; older versions a plain scrim.
+- **Android 13+** — the full AGSL refraction pipeline: SDF edge lensing,
+  chromatic dispersion, specular rim, gel press. Android 12 gets frosted blur;
+  Android 10–11 a clipped backdrop with scrim; older versions a plain scrim.
+  The entire Android engine is **vendored inside this package** — there is no
+  external Maven dependency to install.
 - One typed JS API for both platforms.
 
 ## Install
 
 ```bash
-npx expo install expo-liquid-glass
+npx expo install liquid-glass-kit
 ```
 
-> **Android requirement (until artifacts ship on Maven Central):** the module
-> depends on `io.github.abdullajon1881:liquidglass-view`. From the LiquidGlass
-> repo root run `./gradlew publishToMavenLocal` once, and keep `mavenLocal()`
-> in the repositories list (the module's build.gradle already includes it).
+This is a native module, so it requires a development build (it does not run in
+Expo Go). After installing, rebuild your app:
+
+```bash
+npx expo prebuild
+npx expo run:android   # or: npx expo run:ios
+```
 
 ## Usage
 
 ```tsx
 import { StyleSheet, Text, View } from 'react-native';
-import { LiquidGlassProvider, LiquidGlassView } from 'expo-liquid-glass';
+import { LiquidGlassProvider, LiquidGlassView } from 'liquid-glass-kit';
 
 export default function Screen() {
   return (

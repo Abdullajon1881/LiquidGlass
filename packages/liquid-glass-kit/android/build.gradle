@@ -34,13 +34,12 @@ android {
 repositories {
   mavenCentral()
   google()
-  // Until liquidglass-view ships on Maven Central, publish it locally first:
-  //   ./gradlew publishToMavenLocal   (from the LiquidGlass repo root)
-  mavenLocal()
 }
 
 dependencies {
   implementation project(':expo-modules-core')
-  implementation 'io.github.abdullajon1881:liquidglass-view:1.0.0'
-  implementation 'io.github.abdullajon1881:liquidglass-core:1.0.0'
+  // The Liquid Glass engine (dev.liquidglass.core + dev.liquidglass.view) is
+  // vendored under src/main/java, so this package is fully self-contained —
+  // no external Maven artifact is required to build it on Android.
+  implementation 'androidx.annotation:annotation:1.9.1'
 }
